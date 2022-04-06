@@ -1,0 +1,22 @@
+CivilizationList:
+  - FiristCiv
+  - NewCiv
+CivilizationDetails:
+  FiristCiv:
+    MemberMAX: 30
+    BirthPoint:
+      world: world
+      x: 100.0
+      y: 100.0
+      z: 100.0
+    TeamColor: 1
+    MemberList: [ ]
+  NewCiv:
+    MemberMAX: 20
+    BirthPoint:
+      world: world
+      x: 100.0
+      y: 100.0
+      z: 100.0
+    TeamColor: 2
+    MemberList: [ ]

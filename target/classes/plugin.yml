@@ -1,0 +1,29 @@
+name: SimulatedCivilization      #插件名
+main: com.cmys1109.SimulatedCivilization.main     #插件的包名+主类
+version: 0       #版本
+author: cmys1109
+api-version: 1.16
+commands:
+  CivList:
+    description: 显示所有的文明以及详情
+    permission: op
+    permission-message: 需要op才能使用此命令
+  CivJoin:
+    description: 修改一个玩家的所属文明
+    permission: op
+    permission-message: 需要op才能使用此命令
+    usage: /<command> Name Civilization
+  CivQuit:
+    description: 使一个玩家退出所在文明
+    permission: op
+    permission-message: 需要op才能使用此命令
+    usage: /<command> Name
+  CivStart:
+    description: 分配指定数量玩家加入指定文明
+    permission: op
+    permission-message: 需要op才能使用此命令
+    usage: /<command> number Civilization TP(0/1)
+  CivDebug:
+    description: SimulatedCivilization debug
+    permission: op
+    permission-message: 需要op才能使用此命令

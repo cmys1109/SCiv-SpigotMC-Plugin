@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="plugin">
+    <output-path>D:/Minecraft/spigotserver/plugins</output-path>
+    <root id="archive" name="plugin.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="module-output" name="FirstPlugin" />
+    </root>
+  </artifact>
+</component>
