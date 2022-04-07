@@ -19,10 +19,10 @@ public class player {
     String UUID;
     String Team;
 
-    player(String MCname, File DateFolder) {
+    player(String MCname) {
         Name = MCname;
         if (playerList.contains(Name)) {
-            YamlConfiguration PlayerData = YamlConfiguration.loadConfiguration(new File(DateFolder, "players\\" + Name + ".yml"));
+            YamlConfiguration PlayerData = YamlConfiguration.loadConfiguration(new File(main.plugin.getDataFolder(), "players\\" + Name + ".yml"));
             UUID = Objects.requireNonNull(Bukkit.getPlayer(Name)).getUniqueId().toString();
             Team = PlayerData.getString("team");
             if (Team == null) WhitePLayerList.add(Name);
@@ -32,21 +32,21 @@ public class player {
             WhitePLayerList.add(Name);
             playerList.add(Name);
             playerSUM++;
-            SavePlayerList(DateFolder);
+            SavePlayerList();
         }
         playerMap.put(Name, this);
     }
 
-    public static void GetPlayerList(File DataFolder) {
-        File PlayerListFile = new File(DataFolder, "\\players\\_PlayerList.yml");
+    public static void GetPlayerList() {
+        File PlayerListFile = new File(main.plugin.getDataFolder(), "\\players\\_PlayerList.yml");
         YamlConfiguration PlayerListData = YamlConfiguration.loadConfiguration(PlayerListFile);
         playerList = (ArrayList<String>) PlayerListData.getStringList("PlayerList");
         playerSUM = PlayerListData.getInt("PlayerSUM");
     }
 
-    public static void SavePlayerList(File DataFolder) {
+    public static void SavePlayerList() {
         try {
-            File PlayerListFile = new File(DataFolder, "\\players\\_PlayerList.yml");
+            File PlayerListFile = new File(main.plugin.getDataFolder(), "\\players\\_PlayerList.yml");
             YamlConfiguration PlayerListData = YamlConfiguration.loadConfiguration(PlayerListFile);
             PlayerListData.set("PlayerList", playerList);
             PlayerListData.set("PlayerSUM", playerSUM);
@@ -67,15 +67,15 @@ public class player {
         Objects.requireNonNull(Bukkit.getPlayer((Name))).setPlayerListName(NameByTeam);
     }
 
-    public void SavePlayerYAML(File DataFolder) {
+    public void SavePlayerYAML() {
         try {
-            File PlayerFile = new File(DataFolder, "\\players\\" + Name + ".yml");
+            File PlayerFile = new File(main.plugin.getDataFolder(), "\\players\\" + Name + ".yml");
             YamlConfiguration PlayerData = YamlConfiguration.loadConfiguration(PlayerFile);
             PlayerData.set("name", Name);
             PlayerData.set("uuid", UUID);
             PlayerData.set("team", Team);
             PlayerData.save(PlayerFile);
-            SavePlayerList(DataFolder);
+            SavePlayerList();
         } catch (IOException e) {
             e.printStackTrace();
         }

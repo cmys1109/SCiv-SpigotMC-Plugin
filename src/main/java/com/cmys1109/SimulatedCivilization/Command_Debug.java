@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public class Command_Debug implements CommandExecutor {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         System.out.println("DEBUG-----------FirstLine");
         System.out.println(player.playerList);
         System.out.println(player.WhitePLayerList);

@@ -1,4 +1,4 @@
-# SimulatedCivilization SpiogtMC
+# SimulatedCivilization SpigotMC
 
 简单介绍：JAVA是边写边学的，所有可能有些地方写的不是很好  
 现在仅包含 `最基本` 的Civ系统，即队伍系统

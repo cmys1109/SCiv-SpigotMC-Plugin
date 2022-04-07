@@ -27,7 +27,6 @@ public class team {
         BirthPoint = teamBrithPoint;
         TeamList.put(Name, this);
         MemberList = teamMemberList;
-        System.out.printf("%f,%f,%f\n", BirthPoint.getX(), BirthPoint.getY(), BirthPoint.getZ());
         File CivilizationFile = new File(main.plugin.getDataFolder(), "Civilization.yml");
         FileConfiguration CivilizationConf = YamlConfiguration.loadConfiguration(CivilizationFile);
         TeamColor = CivilizationConf.getString("CivilizationDetails." + Name + ".TeamColor");
@@ -49,8 +48,8 @@ public class team {
         }
     }
 
-    public static void SaveCivYAML(File DataFolder) {
-        File CivilizationFile = new File(DataFolder, "Civilization.yml");
+    public static void SaveCivYAML() {
+        File CivilizationFile = new File(main.plugin.getDataFolder(), "Civilization.yml");
         FileConfiguration CivilizationConf = YamlConfiguration.loadConfiguration(CivilizationFile);
         String[] CivilizationList = CivilizationConf.getStringList("CivilizationList").toArray(new String[0]);
         for (String CivName : CivilizationList) {
@@ -64,7 +63,7 @@ public class team {
         }
     }
 
-    public boolean append(player p, File DataFolder) {
+    public boolean append(player p) {
         if (MemberList.size() >= MemberMax) {// 如果现有人数大于等于设定的最大人数，则返回false
             return true;
         }
@@ -72,29 +71,29 @@ public class team {
             return true;
         }
         if (p.Team != null) {
-            if (team.TeamList.get(p.Team).delete(p, DataFolder)) {
+            if (team.TeamList.get(p.Team).delete(p)) {
                 return true;
             }
         }
         p.Team = Name;
         MemberList.add(p.Name);
-        p.SavePlayerYAML(DataFolder);
-        SaveCivYAML(DataFolder);
+        p.SavePlayerYAML();
+        SaveCivYAML();
         return false;
     }
 
-    public boolean delete(@NotNull player p, File DataFolder) {
+    public boolean delete(@NotNull player p) {
         if (!MemberList.contains(p.Name)) {// 如果不是该文明成员则返回false
             return false;
         }
         MemberList.remove(p.Name);
-        File PlayerFile = new File(DataFolder, "\\players\\" + p.Name + ".yml");
+        File PlayerFile = new File(main.plugin.getDataFolder(), "\\players\\" + p.Name + ".yml");
         FileConfiguration PlayerConf = YamlConfiguration.loadConfiguration(PlayerFile);
         PlayerConf.set("Team", null);
         player.WhitePLayerList.add(p.Name);
         p.Team = null;
-        p.SavePlayerYAML(DataFolder);
-        SaveCivYAML(DataFolder);
+        p.SavePlayerYAML();
+        SaveCivYAML();
         p.UpdatePlayerName();
         return true;
     }

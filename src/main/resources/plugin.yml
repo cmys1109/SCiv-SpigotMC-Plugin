@@ -8,22 +8,34 @@ commands:
     description: 显示所有的文明以及详情
     permission: op
     permission-message: 需要op才能使用此命令
+    usage: /<command>
   CivJoin:
     description: 修改一个玩家的所属文明
     permission: op
     permission-message: 需要op才能使用此命令
-    usage: /<command> Name Civilization
+    usage: /<command> <Name> <Civilization>
   CivQuit:
     description: 使一个玩家退出所在文明
     permission: op
     permission-message: 需要op才能使用此命令
-    usage: /<command> Name
+    usage: /<command> <Name>
   CivStart:
     description: 分配指定数量玩家加入指定文明
     permission: op
     permission-message: 需要op才能使用此命令
-    usage: /<command> number Civilization TP(0/1)
+    usage: /<command> <Number> <Civilization> <TP(0/1)>
   CivDebug:
     description: SimulatedCivilization debug
     permission: op
     permission-message: 需要op才能使用此命令
+    usage: /<command>
+  CivDeadUnban:
+    description: 解除被BanDead功能ban掉的指定的玩家
+    permission: op
+    permission-message: 需要op才能使用此命令
+    usage: /<command> <Name>
+  CivDeadUnbanAll:
+    description: 解除所有被BanDead功能ban掉的玩家
+    permission: op
+    permission-message: 需要op才能使用此命令
+    usage: /<command>

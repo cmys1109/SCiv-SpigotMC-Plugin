@@ -30,18 +30,20 @@ public class Command_CivStart implements CommandExecutor {
         }
         while (Number > 0) {
             player p = player.playerMap.get(player.WhitePLayerList.get(Number - 1));
-            if (Civil.append(p, Bukkit.getUpdateFolderFile())) {
+            if (Civil.append(p)) {
                 sender.sendMessage("Failed append");
                 return true;
             }
             if (Objects.equals(TP, "1"))
                 Objects.requireNonNull(Bukkit.getPlayer(sender.getName())).teleport(Civil.BirthPoint);
             --Number;
-            p.SavePlayerYAML(main.plugin.getDataFolder());
+            p.SavePlayerYAML();
             p.UpdatePlayerName();
+            sender.sendMessage(p.Name + " 已经加入 §" + team.TeamList.get(p.Team).TeamColor + p.Team);
+            Objects.requireNonNull(Bukkit.getPlayer(p.Name)).sendMessage(sender.getName() + " 已经将你加入 §" + team.TeamList.get(p.Team).TeamColor + p.Team);
         }
-        team.SaveCivYAML(main.plugin.getDataFolder());
-
+        team.SaveCivYAML();
+        sender.sendMessage(args[0] + "个玩家已经加入 §" + team.TeamList.get(Civ).TeamColor + Civ);
         return true;
     }
 }

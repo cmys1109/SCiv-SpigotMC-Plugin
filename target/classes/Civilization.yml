@@ -1,16 +1,16 @@
-CivilizationList:
-  - FiristCiv
+CivilizationList: # 文明列表，所有文明都需要写入这里
+  - FiristCiv     # 务必确保文明列表和文明详情中的拼写一致
   - NewCiv
-CivilizationDetails:
-  FiristCiv:
-    MemberMAX: 30
-    BirthPoint:
-      world: world
-      x: 100.0
+CivilizationDetails: # 文明详情
+  FiristCiv: # 第一行 文明名称
+    MemberMAX: 30    # 第二行 文明最大人数
+    BirthPoint: # 第三行 文明统一出生点
+      world: world   # 第四行 文明统一出生点 出生世界
+      x: 100.0       # 第五、六、七行 文明出生点XYZ坐标
       y: 100.0
       z: 100.0
-    TeamColor: 1
-    MemberList: [ ]
+    TeamColor: 1     # 第八行 文明颜色，将用于列表显示和对话框显示
+    MemberList: [ ]  # 第八行 文明成员列表，请勿自行修改！
   NewCiv:
     MemberMAX: 20
     BirthPoint:
