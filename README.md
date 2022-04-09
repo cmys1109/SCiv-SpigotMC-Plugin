@@ -10,7 +10,7 @@ SCiv 是由`Simulated Civilization` 简化而来的名称，直译则为`模拟�
 
 如果你有什么好的建议也可以联系我，也许我会加入TODO。
 
-## [用户手册  User——manual](src\main\resources\SimulatedCivilization_user_manual.md) 
+## [用户手册  User——manual](https://github.com/cmys1109/SimulatedCivilization-SpigotMC-Plugin/blob/master/src/main/resources/SimulatedCivilization_user_manual.md) 
 
 ---
 
