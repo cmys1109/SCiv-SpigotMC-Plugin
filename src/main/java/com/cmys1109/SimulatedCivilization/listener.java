@@ -33,7 +33,6 @@ public class listener implements Listener {
                         SphereName = Team.Name;// 可以实现更加详细的判断，比如双重势力范围显示
                     }                          // 考虑到这种情况应当避免，并且从各方面考虑还是直接采用for并且直接覆盖写入的方法
                 }
-                SphereLog.put(uuid, SphereName);
                 String OldSphere = SphereLog.get(uuid);
                 if (!Objects.equals(SphereName, OldSphere) && SphereName != null) {
                     SphereLog.put(uuid, SphereName);
