@@ -25,12 +25,11 @@ public class Command_CivDeadUnbanAll implements CommandExecutor {
         }
 
         for (String name : BanList) {
-            sender.sendMessage(name + "已经解除DeadBan");
             Bukkit.getBanList(org.bukkit.BanList.Type.NAME).pardon(name);
+            sender.sendMessage(name + "已经解除DeadBan");
         }
 
 
         return true;
     }
 }
-

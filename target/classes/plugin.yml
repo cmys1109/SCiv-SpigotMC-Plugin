@@ -1,8 +1,9 @@
 name: SimulatedCivilization      #插件名
 main: com.cmys1109.SimulatedCivilization.main     #插件的包名+主类
-version: 0       #版本
+version: 0.2.0       #版本
 author: cmys1109
 api-version: 1.16
+softdepend: [ PlaceholderAPI ]
 commands:
   CivList:
     description: 显示所有的文明以及详情

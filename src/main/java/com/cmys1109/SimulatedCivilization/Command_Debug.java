@@ -5,16 +5,16 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public class Command_Debug implements CommandExecutor {
+class Command_Debug implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        System.out.println("DEBUG-----------FirstLine");
-        System.out.println(player.playerList);
-        System.out.println(player.WhitePLayerList);
-        System.out.println(player.playerMap);
-        System.out.println(team.TeamList);
-        System.out.println("DEBUG-----------LastLine");
+        sender.sendMessage("DEBUG-----------FirstLine");
+        sender.sendMessage(player.playerList.toString());
+        sender.sendMessage(player.WhitePLayerList.toString());
+        sender.sendMessage(player.playerMap.toString());
+        sender.sendMessage(team.TeamList.toString());
+        sender.sendMessage("DEBUG-----------LastLine");
         return true;
     }
 }

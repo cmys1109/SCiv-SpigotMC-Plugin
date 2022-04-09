@@ -1,6 +1,7 @@
 package com.cmys1109.SimulatedCivilization;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +15,10 @@ import java.util.ArrayList;
 public class Command_CivDeadUnban implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
-
+        if (args.length != 1) {
+            sender.sendMessage(ChatColor.RED + "SCiv:错误的指令");
+            return true;
+        }
         String name = args[0];
         if (!Bukkit.getBanList(org.bukkit.BanList.Type.NAME).isBanned(name)) {
             sender.sendMessage(name + "没有被Ban");
@@ -35,7 +39,7 @@ public class Command_CivDeadUnban implements CommandExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         sender.sendMessage(name + "已经解除DeadBan");
         Bukkit.getBanList(org.bukkit.BanList.Type.NAME).pardon(name);
 

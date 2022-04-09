@@ -1,2 +1,3 @@
-BanDead: true #死亡Ban掉玩家 开关
-Debug: false  #Debug模式
+BanDead: true #死亡Ban掉玩家功能开关
+Debug: false  #Debug模式开关
+SphereOfInfluence: false # 文明势力范围开关

@@ -9,22 +9,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class Command_CivQuit implements CommandExecutor {
+class Command_CivQuit implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
-        if (!player.playerList.contains(args[0])) {
+        if (args.length != 1) {
+            sender.sendMessage(ChatColor.RED + "SCiv:错误的指令");
+            return true;
+        }
+        String uuid = Objects.requireNonNull(Bukkit.getPlayer(args[0])).getUniqueId().toString();
+        if (!player.playerList.contains(uuid)) {
             sender.sendMessage(ChatColor.RED + args[0] + ",该玩家不存在");
             return true;
         }
 
-        String Team = player.playerMap.get(args[0]).Team;
+        String Team = player.playerMap.get(uuid).Team;
 
         if (!team.TeamList.containsKey(Team)) {
-            sender.sendMessage(ChatColor.RED + args[0] + ",该玩家不为加入文明");
+            sender.sendMessage(ChatColor.RED + args[0] + ",该玩家不归属任何文明");
             return true;
         }
 
-        if (!team.TeamList.get(Team).delete(player.playerMap.get(sender.getName()))) {
+        if (!team.TeamList.get(Team).delete(player.playerMap.get(uuid))) {
             sender.sendMessage("Failed delete");
             return true;
         }

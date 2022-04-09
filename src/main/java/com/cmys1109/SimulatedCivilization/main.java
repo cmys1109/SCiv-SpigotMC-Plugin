@@ -1,9 +1,11 @@
 package com.cmys1109.SimulatedCivilization;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -17,20 +19,27 @@ public class main extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onEnable() {
+        Plugin plugin = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
+        if (plugin == null) {
+            getLogger().info("PlaceholderAPI not found.");
+        } else {
+            getLogger().info("PlaceholderAPI register.");
+            new PAPISharer(this).register();
+        }
 
         this.saveDefaultConfig();
         FileConfiguration Conf = this.getConfig();
+        this.saveResource("Civilization.yml", false);
         this.saveResource("SimulatedCivilization_user_manual.md", false);
 
         // 文明配置初始化
-        this.saveResource("Civilization.yml", false);
         team.LoadCivYAML();
 
         // player初始化
         this.saveResource("players\\_PlayerList.yml", false);
         player.GetPlayerList();
         for (Player p : getServer().getOnlinePlayers()) {
-            player New = new player(p.getName());
+            player New = new player(p.getUniqueId());
         }
 
         // 注册监听器
@@ -57,7 +66,9 @@ public class main extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onDisable() {
+        Bukkit.getScheduler().cancelTasks(this);
         team.SaveCivYAML();
-        getLogger().info("Bye~");
     }
 }
+
+

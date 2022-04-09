@@ -8,9 +8,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class Command_CivStart implements CommandExecutor {
+class Command_CivStart implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String @NotNull [] args) {
+        if (args.length != 3) {
+            sender.sendMessage(ChatColor.RED + "SCiv:错误的指令");
+            return true;
+        }
         int Number = Integer.parseInt(args[0]);
         String Civ = args[1];
         String TP = args[2];
@@ -40,7 +44,7 @@ public class Command_CivStart implements CommandExecutor {
             p.SavePlayerYAML();
             p.UpdatePlayerName();
             sender.sendMessage(p.Name + " 已经加入 §" + team.TeamList.get(p.Team).TeamColor + p.Team);
-            Objects.requireNonNull(Bukkit.getPlayer(p.Name)).sendMessage(sender.getName() + " 已经将你加入 §" + team.TeamList.get(p.Team).TeamColor + p.Team);
+            Objects.requireNonNull(Bukkit.getPlayer(p.uuid)).sendMessage(sender.getName() + " 已经将你加入 §" + team.TeamList.get(p.Team).TeamColor + p.Team);
         }
         team.SaveCivYAML();
         sender.sendMessage(args[0] + "个玩家已经加入 §" + team.TeamList.get(Civ).TeamColor + Civ);

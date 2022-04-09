@@ -1,13 +1,15 @@
 package com.cmys1109.SimulatedCivilization;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.UUID;
 
-public class Command_CivList implements CommandExecutor {
+class Command_CivList implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
         for (String t : team.TeamList.keySet()) {
@@ -20,12 +22,13 @@ public class Command_CivList implements CommandExecutor {
             StringBuilder MemberListString = new StringBuilder("[");
             boolean k = true;
             for (String Member : teamCache.MemberList) {
+                UUID uuid = UUID.fromString(Member);
                 if (k) {
-                    MemberListString.append(Member);
+                    MemberListString.append(Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName());
                     k = false;
                     continue;
                 }
-                MemberListString.append(",").append(Member);
+                MemberListString.append(",").append(uuid);
             }
             MemberListString.append("]");
             sender.sendMessage(MemberListString.toString());
